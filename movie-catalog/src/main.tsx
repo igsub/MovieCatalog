@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Root from './routes/root';
+import Root from './routes/Root';
+import Home from './routes/Home';
+import MovieDetail from './components/MovieDetail';
+import { SessionProvider } from './services/context/SessionContext';
+import Favorites from './components/Favorites';
 
 const router = createBrowserRouter([
   {
@@ -14,12 +17,16 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "movie/:movieId",
-        element: <>Hello Movie!</>
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "movie/:id",
+        element: <MovieDetail />
       },
       {
         path: "favorites",
-        element: <>Hello Favorites!</>
+        element: <Favorites />
       }
     ]
   },
@@ -27,6 +34,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SessionProvider>
+      <RouterProvider router={router} />
+    </SessionProvider>
   </React.StrictMode>,
 )

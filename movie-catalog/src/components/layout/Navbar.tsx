@@ -1,8 +1,9 @@
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useEffect, useState } from 'react'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import MovieIcon from '../../assets/icons/movie'
+import { useLocation } from 'react-router-dom'
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -15,6 +16,7 @@ function classNames(...classes: string[]) {
 
 const Navbar = () => {
   const [navigationTabs, setNavigationTabs] = useState(navigation)
+  const location = useLocation()
 
   const onNavigationClick = (name: string) => {
     setNavigationTabs(prevNavigationTabs => 
@@ -27,6 +29,17 @@ const Navbar = () => {
       })
     )
   }
+
+  useEffect(() => {
+    if (location.pathname.includes('/movie/')) {
+      setNavigationTabs(prevNavigationTabs => 
+        prevNavigationTabs.map(
+          tab => { 
+            return { ...tab, current: false }
+          }
+        ))
+    }
+  }, [location])
 
   return (
     <Disclosure as="nav" className="bg-gray-800">

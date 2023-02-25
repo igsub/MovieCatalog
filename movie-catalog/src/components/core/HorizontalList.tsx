@@ -13,8 +13,8 @@ const HorizontalList = ({ items, className }: IHorizontalList) => {
         arrows
         autoPlaySpeed={3000}
         centerMode={true}
-        className={`${className} md:w-3/4`}
-        containerClass="container max-w-3/4 p-2 bg-gray-300 m-2 rounded"
+        className={`${className}`}
+        containerClass="container w-full lg:min-w-3/4 p-2 bg-gray-300 m-2 rounded"
         dotListClass=""
         draggable={false}
         focusOnSelect={false}
@@ -63,7 +63,7 @@ const HorizontalList = ({ items, className }: IHorizontalList) => {
       >
         {items}
       </Carousel>
-  )
+      )
 }
 
 export default HorizontalList

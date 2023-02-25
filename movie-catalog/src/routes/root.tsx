@@ -11,7 +11,7 @@ export default function Root() {
   return (
     <ApolloProvider client={apolloClient}>
       <Navbar />
-      <div id="detail">
+      <div id="detail" className="p-4">
         <Outlet />
       </div>
     </ApolloProvider>
